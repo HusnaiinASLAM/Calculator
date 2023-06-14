@@ -81,3 +81,20 @@ btns.forEach((btn) => {
     }
   });
 });
+
+/*++++++++++++++++++
+Below code handles operation using keyboard
+--------------------*/
+
+function handleEvent(e) {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    handleSubmit();
+  }
+}
+
+function handleSubmit() {
+  const exp = input.value;
+  const res = eval(exp);
+  input.value = res;
+}
