@@ -98,3 +98,24 @@ function handleSubmit() {
   const res = eval(exp);
   input.value = res;
 }
+
+/*++++++++++++++++++
+MOOD CHANGE
+--------------------*/
+
+const icon = document.getElementById("icon");
+const body = document.getElementById("body");
+
+icon.onclick = function () {
+  document.body.classList.toggle("Dark");
+  console.log(icon.src);
+  if (document.body.classList.contains("Dark")) {
+    icon.src = "sun.png";
+    input.classList.add("input-night");
+    body.classList.add("body-night");
+  } else {
+    input.classList.remove("input-night");
+    body.classList.remove("body-night");
+    icon.src = "moon.png";
+  }
+};
