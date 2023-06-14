@@ -12,11 +12,18 @@ const input = document.querySelector("input");
 const arr = [];
 let number = "";
 let temp = "";
+let reset = false;
 /* Below we add eventlistener and on evey button press update "number" variable. When any operand is added(*,-) 
 we push number into "arr" and reset number
 --------------------*/
 btns.forEach((btn) => {
   btn.addEventListener("click", () => {
+    console.log(arr.length);
+    if (reset == true && arr.length == 1) {
+      console.log("in eval");
+      arr.length = 0;
+      number = "";
+    }
     const inp = parseInt(btn.getAttribute("value"));
 
     switch (inp) {
@@ -54,16 +61,15 @@ btns.forEach((btn) => {
       case 99:
         arr.push(number);
         number = "";
-        console.log("=");
+
         if (arr.length > 2) {
-          console.log("=");
           first = arr.shift();
           op = arr.shift();
           second = arr.shift();
+          reset = true;
           const expression = `${first} ${op} ${second}`;
           const result = eval(expression);
           arr.unshift(result);
-          console.log(result);
         }
         break;
 
@@ -76,7 +82,7 @@ btns.forEach((btn) => {
       const n = arr.reduce((acc, current) => {
         return acc + current;
       });
-      console.log(n);
+
       input.value = n + input.value;
     }
   });
@@ -108,7 +114,7 @@ const body = document.getElementById("body");
 
 icon.onclick = function () {
   document.body.classList.toggle("Dark");
-  console.log(icon.src);
+
   if (document.body.classList.contains("Dark")) {
     icon.src = "sun.png";
     input.classList.add("input-night");
